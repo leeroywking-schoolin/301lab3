@@ -22,11 +22,8 @@ Horns.allHorns = [];
 Horns.prototype.render = function(){
   $('main').append('<div class="clone"></div>');
   let hornClone = $('div[class = "clone"]');
-
   let hornHTML = $('#horn-template').html();
-
   hornClone.html(hornHTML);
-
   hornClone.find('h2').text(this.title);
   hornClone.find('img').attr('src',this.image_url);
   hornClone.find('img').attr('alt',this.keyword);
@@ -36,8 +33,8 @@ Horns.prototype.render = function(){
   hornClone.addClass(this.keyword);
 }
 
-Horns.readHorns = () => {
-  $.get('data/page-1.json','json')
+Horns.readHorns = (page) => {
+  $.get(page,'json')
     .then(data => {
       data.forEach(item => {new Horns(item)
       });
@@ -46,7 +43,6 @@ Horns.readHorns = () => {
 };
 
 Horns.loadHorns = () => {
-  // console.log(Horns.allHorns)
   Horns.allHorns.forEach(horn => horn.render())
   Horns.allKeys.forEach(key => renderKeys(key));
 
@@ -57,7 +53,21 @@ const renderKeys = function(key) {
 
 }
 
-$(() => Horns.readHorns());
+$('#page').on('change', function() {
+  let selection = $('#page :selected').val();
+  console.log(selection);
+  if(selection === 'page1'){
+    Horns.allHorns = [];
+    $('div').remove(); 
+    $(() => Horns.readHorns('data/page-1.json'))
+  };
+  if(selection === 'page2'){
+    Horns.allHorns = [];
+    $('div').remove();
+    $(() => Horns.readHorns('data/page-2.json'));
+  };
+})
+
 
 $('#keywords').on('change', function() {
   let selection = $('#keywords :selected').val();
@@ -70,6 +80,7 @@ $('#keywords').on('change', function() {
   $('.' + selection).show();
   }
 })
+
 // console.log(Horns.allHorns);
 // Horns.allHorns.forEach(element)(console.log(element.keyword))
 // Horns.allHorns[].numHorns
