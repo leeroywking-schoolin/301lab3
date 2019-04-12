@@ -1,0 +1,17 @@
+img {
+    width:200px;
+}
+
+body{
+    width: 960px;
+    /*font css from brandyn*/
+    font-family: ‘Heebo’, sans-serif;
+}
+
+div{
+    width: 250px;
+    height: 350px;
+    padding: 5px;
+    float: left;
+    box-sizing: border-box;
+}
