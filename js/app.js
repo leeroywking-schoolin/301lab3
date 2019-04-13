@@ -1,10 +1,7 @@
 'use-strict'
 
-// display images
-
-
 function Horns(horn){
-  this.img_url = horn.image_url;
+  this.image_url = horn.image_url;
   this.title = horn.title;
   this.description = horn.description;
   this.keyword = horn.keyword;
@@ -20,11 +17,8 @@ Horns.allKeys = [];
 Horns.allHorns = [];
 
 Horns.prototype.toHtml = function() {
-  // console.log('blah')
   let $template = $('#horn-template').html();
-  // console.log($template);
   let compiledTemplate = Handlebars.compile($template);
-  console.log(compiledTemplate(this));
   return compiledTemplate(this);
 }
 
@@ -32,11 +26,10 @@ Horns.prototype.toHtml = function() {
 Horns.readHorns = (page) => {
   $.get(page,'json')
     .then(data => {
-      // console.log(data);
       data.forEach(item => {new Horns(item)
       });
     })
-    .then(Horns.loadHorns);
+    .then(Horns.loadHorns)
 };
 
 
@@ -54,18 +47,31 @@ const renderKeys = function(key) {
 
 $(() => Horns.readHorns('data/page-1.json'))
 
+// THIS IS NOT DRY I know I need to refactor this if/when I have time but I am still working on MVP at time of writing.
+
 $('#pageselect').on('change', function() {
   let selection = $('#pageselect :selected').val();
-  console.log(selection);
   if(selection === 'page1'){
     Horns.allHorns = [];
     $('div').remove(); 
-    $(() => Horns.readHorns('data/page-1.json'))
+    Horns.readHorns('data/page-1.json').then( () => {
+      $('div').hide();
+    })
+    let selection = $('#keywords :selected').val();
+    console.log(selection);
+    if(selection === 'default'){$('div').show()}
+    else{$('.' + selection).show();}
   };
+
   if(selection === 'page2'){
     Horns.allHorns = [];
     $('div').remove();
     $(() => Horns.readHorns('data/page-2.json'));
+    let selection = $('#keywords :selected').val();
+    console.log(selection);
+    if(selection === 'default'){$('div').show()}
+    else{$('.' + selection).show();
+  }
   };
 })
 
@@ -73,16 +79,11 @@ $('#pageselect').on('change', function() {
 $('#keywords').on('change', function() {
   let selection = $('#keywords :selected').val();
   $('div').hide();
-  let sortBy = ($('#sortword :selected').val());
-  if(sortBy === 'Number of horns'){};
-  if(sortBy === 'Title'){};
+  // let sortBy = ($('#sortword :selected').val());
+  // if(sortBy === 'Number of horns'){};
+  // if(sortBy === 'Title'){};
   if(selection === 'default'){$('div').show()}
   else{
   $('.' + selection).show();
   }
 })
-
-// console.log(Horns.allHorns);
-// Horns.allHorns.forEach(element)(console.log(element.keyword))
-// Horns.allHorns[].numHorns
-// Horns.allHorns.forEach(element => console.log(element));
