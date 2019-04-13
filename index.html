@@ -16,8 +16,8 @@
       </select>
       <select id="sortword">
         <option value="default">Sort by..</option>
-        <option>Number of horns</option>
-        <option>Title</option>
+        <option value="horns">Number of horns</option>
+        <option value="title">Title</option>
       </select>
       <select id="pageselect">
         <option value="page1">Page 1</option>
@@ -28,7 +28,7 @@
       <script id="horn-template" type="text/x-handlebars-template">
         <div class="{{ keyword }}"">
         <h2>{{ title }}</h2>
-        <img src="{{ img_url }}" alt="{{ description }}">
+        <img src="{{ image_url }}" alt="{{ description }}">
         <p>{{ description }}</p>
         </div>
       </script>

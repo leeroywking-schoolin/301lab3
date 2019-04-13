@@ -30,18 +30,18 @@ Actual time needed to complete: 22 min
 --------------------------------------------------------------------
 Number and name of feature: templating
 Estimate of time needed to complete: 60 min
-Start time: _____
-Finish time: _____
-Actual time needed to complete: _____
+Start time: 2030
+Finish time: 2130
+Actual time needed to complete: 60 min
 --------------------------------------------------------------------
 Number and name of feature: styling with flexbox
-Estimate of time needed to complete: _____
-Start time: _____
-Finish time: _____
-Actual time needed to complete: _____
+Estimate of time needed to complete: 60 min
+Start time: 0325
+Finish time: 0333
+Actual time needed to complete: 8 min
 --------------------------------------------------------------------
 Number and name of feature: sort the images
-Estimate of time needed to complete: _____
-Start time: _____
-Finish time: _____
-Actual time needed to complete: _____
+Estimate of time needed to complete: 2 hours
+Start time: 0333
+Finish time: TBD
+Actual time needed to complete: 2.5 hours and counting
